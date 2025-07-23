@@ -1,10 +1,10 @@
 import sqlite3
 
-# Connect to SQLite database (or create it if it doesn't exist)
+
 conn = sqlite3.connect("bill_db.sqlite")
 cursor = conn.cursor()
 
-# Create products table
+
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS products (
 )
 """)
 
-# Create bills table
+
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS bills (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS bills (
 )
 """)
 
-# Create bill_items table
+
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS bill_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS bill_items (
 )
 """)
 
-# Insert some products only if not already present
 cursor.execute("SELECT COUNT(*) FROM products")
 if cursor.fetchone()[0] == 0:
     cursor.executemany("INSERT INTO products (name, price) VALUES (?, ?)", [
